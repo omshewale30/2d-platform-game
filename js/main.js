@@ -61,42 +61,42 @@ const player = new Player({
     frameRate: 8,
     animations: {
         Idle: {
-            imageSrc: './img/warrior/Idle.png',
+            imageSrc: 'Idle.png',
             frameRate: 8,
             frameBuffer: 3,
         },
         Run: {
-            imageSrc: './img/warrior/Run.png',
+            imageSrc: 'Run.png',
             frameRate: 8,
             frameBuffer: 5,
         },
         Jump: {
-            imageSrc: './img/warrior/Jump.png',
+            imageSrc: 'Jump.png',
             frameRate: 2,
             frameBuffer: 3,
         },
         Fall: {
-            imageSrc: './img/warrior/Fall.png',
+            imageSrc: 'Fall.png',
             frameRate: 2,
             frameBuffer: 3,
         },
         FallLeft: {
-            imageSrc: './img/warrior/FallLeft.png',
+            imageSrc: 'FallLeft.png',
             frameRate: 2,
             frameBuffer: 3,
         },
         RunLeft: {
-            imageSrc: './img/warrior/RunLeft.png',
+            imageSrc: 'RunLeft.png',
             frameRate: 8,
             frameBuffer: 5,
         },
         IdleLeft: {
-            imageSrc: './img/warrior/IdleLeft.png',
+            imageSrc: 'IdleLeft.png',
             frameRate: 8,
             frameBuffer: 3,
         },
         JumpLeft: {
-            imageSrc: './img/warrior/JumpLeft.png',
+            imageSrc: 'JumpLeft.png',
             frameRate: 2,
             frameBuffer: 3,
         },
