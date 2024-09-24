@@ -1,0 +1,16 @@
+{
+  "name": "2d-platform",
+  "version": "1.0.0",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "author": "Om Shewale",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1"
+  }
+}
