@@ -126,6 +126,9 @@ const keys={
         pressed:false
     }
 }
+const backgroundMusic = new Audio('bgMusic.mp3'); // Your music file path
+backgroundMusic.loop = true; // Loop the music
+backgroundMusic.volume = 0.5; // Set volume
 let backgroundImageHeight=432;
 const camera = {
     position: {
@@ -134,12 +137,14 @@ const camera = {
     },
 }
 function animate() {
+
     window.requestAnimationFrame(animate);
     ctx.fillStyle='white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.save() // Save the current state of the canvas
     ctx.scale(4, 4); // Scale the canvas
     ctx.translate(camera.position.x, camera.position.y); // Translate the canvas
+    backgroundMusic.play(); // Play the music
     background.update(); // Draw the background
     collisionBlocks.forEach(block => {
         block.update();
