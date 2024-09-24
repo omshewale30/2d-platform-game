@@ -57,7 +57,7 @@ const player = new Player({
     position: {x: 100, y: 300},
     collisionBlocks,
     platformCollisionBlocks,
-    imageSrc: 'public/Idle.png',
+    imageSrc: 'Idle.png',
     frameRate: 8,
     animations: {
         Idle: {
@@ -109,7 +109,7 @@ const background = new Sprite({
         x: 0,
         y: 0,
     },
-    imageSrc: 'public/background.png',
+    imageSrc: 'background.png',
 })
 const gravity = 0.1
 const keys={
