@@ -1,6 +1,5 @@
 
-//TODO: Add Collision Blocks
-//TODO: 
+
 const canvas =  document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -63,12 +62,12 @@ const player = new Player({
         Idle: {
             imageSrc: 'Idle.png',
             frameRate: 8,
-            frameBuffer: 3,
+            frameBuffer: 5,
         },
         Run: {
             imageSrc: 'Run.png',
             frameRate: 8,
-            frameBuffer: 5,
+            frameBuffer: 7,
         },
         Jump: {
             imageSrc: 'Jump.png',
@@ -121,6 +120,10 @@ const keys={
     },
     w :{
         pressed: false
+    },
+    p:
+    {
+        pressed:false
     }
 }
 let backgroundImageHeight=432;
@@ -136,7 +139,7 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.save() // Save the current state of the canvas
     ctx.scale(4, 4); // Scale the canvas
-    ctx.translate(0,-background.image.height+scaledCanvas.height);
+    ctx.translate(camera.position.x, camera.position.y); // Translate the canvas
     background.update(); // Draw the background
     collisionBlocks.forEach(block => {
         block.update();
@@ -146,22 +149,25 @@ function animate() {
     })
 
     player.update();
+    player.stayWithinBounds()
     player.velocity.x = 0;
+
 
     if (keys.d.pressed) {
         player.switchSprite('Run')
+
         player.velocity.x = 2
         player.lastDirection = 'right'
         player.shouldPanCameraToTheLeft({ canvas, camera })
     }
-    if (keys.a.pressed) {
+    else if (keys.a.pressed) {
         player.switchSprite('RunLeft')
         player.velocity.x = -2
         player.lastDirection = 'left'
         player.shouldPanCameraToTheRight({ canvas, camera })
     }
-    //switching sprites
-    if (player.velocity.y === 0) {
+
+   else if (player.velocity.y === 0) {
         if (player.lastDirection === 'right') player.switchSprite('Idle')
         else player.switchSprite('IdleLeft')
     }
@@ -171,7 +177,7 @@ function animate() {
         if (player.lastDirection === 'right') player.switchSprite('Jump')
         else player.switchSprite('JumpLeft')
     }
-    if (player.velocity.y > 0) {
+    else if (player.velocity.y > 0) {
         player.shouldPanCameraUp({ camera, canvas })
         if (player.lastDirection === 'right') player.switchSprite('Fall')
         else player.switchSprite('FallLeft')
@@ -195,6 +201,9 @@ window.addEventListener('keydown', (event) => {
         case 'w':
             player.velocity.y = -4
             break
+        case 'p':
+            keys.p.pressed = true
+            break
     }
 })
 
@@ -205,6 +214,9 @@ window.addEventListener('keyup', (event) => {
             break
         case 'a':
             keys.a.pressed = false
+            break
+        case 'p':
+            keys.p.pressed = false
             break
     }
 })

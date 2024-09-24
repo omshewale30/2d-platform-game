@@ -26,7 +26,6 @@ class Player extends Sprite {
         for (let key in this.animations) {
             const image = new Image()
             image.src = this.animations[key].imageSrc
-
             this.animations[key].image = image
         }
         this.camerabox = {
@@ -58,9 +57,12 @@ class Player extends Sprite {
         }
     }
     update() {
+     
         this.draw();
         this.updateFrame();
         this.updateHitBox();
+        this.updateCamerabox();
+
         this.position.x = this.position.x + this.velocity.x;
         this.updateHitBox();
         this.checkForHoriCollisions();
@@ -91,6 +93,7 @@ class Player extends Sprite {
             cameraboxRightSide >=
             scaledDownCanvasWidth + Math.abs(camera.position.x)
         ) {
+
             camera.position.x -= this.velocity.x
         }
     }
@@ -99,6 +102,7 @@ class Player extends Sprite {
         if (this.camerabox.position.x <= 0) return
 
         if (this.camerabox.position.x <= Math.abs(camera.position.x)) {
+
             camera.position.x -= this.velocity.x
         }
     }
@@ -164,6 +168,19 @@ class Player extends Sprite {
     applyGravity() {
         this.velocity.y += gravity
         this.position.y += this.velocity.y
+
+    }
+    stayWithinBounds(){
+
+        if(this.position.x < -34){
+            this.position.x = -34
+        }
+        if(this.position.x > 528){
+            this.position.x = 528
+        }
+        if(this.position.y < 0){
+            this.position.y = 0
+        }
     }
 
 

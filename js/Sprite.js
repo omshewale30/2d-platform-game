@@ -1,12 +1,13 @@
 class Sprite {
     constructor({position,imageSrc,frameRate=1,scale=1,frameBuffer=7}) {
-        console.log("This is the source in Sprite", imageSrc)
+
         this.position = position;
         this.scale = scale;
         this.image = new Image();
         this.image.onload = () => {
             this.width = (this.image.width/this.frameRate)*(this.scale);
             this.height = this.image.height * this.scale;
+            this.loaded = true;
         }
         this.frameBuffer = frameBuffer;
         this.elapsedFrame = 0;
@@ -19,8 +20,6 @@ class Sprite {
         if (!this.image) {
             return;
         }
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         const cropBox = {
             position:{
                 x: this.currentFrame * (this.image.width / this.frameRate),
