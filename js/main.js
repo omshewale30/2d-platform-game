@@ -144,20 +144,24 @@ function animate() {
     platformCollisionBlocks.forEach(block => {
         block.update();
     })
-    player.checkForHoriCollisions();
+
     player.update();
     player.velocity.x = 0;
+
     if (keys.d.pressed) {
         player.switchSprite('Run')
         player.velocity.x = 2
         player.lastDirection = 'right'
         player.shouldPanCameraToTheLeft({ canvas, camera })
-    } else if (keys.a.pressed) {
+    }
+    if (keys.a.pressed) {
         player.switchSprite('RunLeft')
         player.velocity.x = -2
         player.lastDirection = 'left'
         player.shouldPanCameraToTheRight({ canvas, camera })
-    } else if (player.velocity.y === 0) {
+    }
+    //switching sprites
+    if (player.velocity.y === 0) {
         if (player.lastDirection === 'right') player.switchSprite('Idle')
         else player.switchSprite('IdleLeft')
     }
@@ -166,7 +170,8 @@ function animate() {
         player.shouldPanCameraDown({ camera, canvas })
         if (player.lastDirection === 'right') player.switchSprite('Jump')
         else player.switchSprite('JumpLeft')
-    } else if (player.velocity.y > 0) {
+    }
+    if (player.velocity.y > 0) {
         player.shouldPanCameraUp({ camera, canvas })
         if (player.lastDirection === 'right') player.switchSprite('Fall')
         else player.switchSprite('FallLeft')
