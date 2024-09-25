@@ -144,7 +144,9 @@ function animate() {
     ctx.save() // Save the current state of the canvas
     ctx.scale(4, 4); // Scale the canvas
     ctx.translate(camera.position.x, camera.position.y); // Translate the canvas
-    backgroundMusic.play(); // Play the music
+    backgroundMusic.play().catch(error => {
+            console.log('Error playing music:', error);
+        });; // Play the music
     background.update(); // Draw the background
     collisionBlocks.forEach(block => {
         block.update();
