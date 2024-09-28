@@ -1,5 +1,6 @@
 {
   "name": "2d-platform",
+  "private": "false",
   "version": "1.0.0",
   "main": "js/main.js",
   "scripts": {
